@@ -1,0 +1,267 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>pagination</title>
+<link rel="stylesheet" href="responsive.css">
+<style>
+.card
+{
+height:300px;
+width:300px;
+background-color:grey;
+margin:10px;
+}
+.card img
+{
+width:30%;
+}
+.row
+{
+
+}
+.name
+{
+height:30%;
+text-align:center;
+}
+.profilepic
+{
+height:70%;
+
+}
+.profilepic img
+{
+width:100%;
+height:100%;
+}
+</style>
+</head>
+<body>
+   <body>
+ 
+    
+  
+ <div class="container">
+  <input type="button" id="next" onclick="nextPage()" value="next" />
+    <input type="button" id="previous" onclick="previousPage()" value="previous" />
+    <div id="list" class="container">
+	</div> 
+	</div>
+   
+</body>
+<script type="text/javascript">
+
+ var list = new Array();
+var pageList = new Array();
+var currentPage = 1;
+var numberPerPage = 9;
+var numberOfPages = 1;   // calculates the total number of pages
+
+function makeList() {
+ let person1 = {
+        name: 'Ai',
+        
+        profilepic: '19.jpeg'
+        };
+        
+        let person2 = {
+            name: 'Data Science',
+            
+            profilepic: '19.jpeg'
+        };
+            
+        let person3 = {
+            name: 'machine learning',
+            
+            profilepic: '19.jpeg'
+        };
+		let person4 = {
+        name: 'web',
+        
+        profilepic: '19.jpeg'
+        };
+        
+        let person5 = {
+            name: 'seo',
+           
+            profilepic: '19.jpeg'
+        };
+            
+        let person6 = {
+            name: 'big data',
+           
+            profilepic: '19.jpeg'
+        };
+		let person7= {
+        name: 'data structure',
+       
+        profilepic: '19.jpeg'
+        };
+        
+        let person8 = {
+            name: 'python',
+           
+            profilepic: '19.jpeg'
+        };
+            
+        let person9 = {
+            name: 'java.',
+        
+            profilepic: '19.jpeg'
+        };
+		let person10 = {
+        name: 'c',
+        
+        profilepic: '19.jpeg'
+        };
+        
+        let person11 = {
+            name: 'c++',
+            
+            profilepic: '19.jpeg'
+        };
+            
+        let person12 = {
+            name: 'machine learning',
+            
+            profilepic: '19.jpeg'
+        };
+		let person13 = {
+        name: 'r',
+        
+        profilepic: '19.jpeg'
+        };
+        
+        let person14 = {
+            name: 'jquery',
+           
+            profilepic: '19.jpeg'
+        };
+            
+        let person15 = {
+            name: 'haskell',
+           
+            profilepic: '19.jpeg'
+        };
+		let person16= {
+        name: 'perl',
+       
+        profilepic: '19.jpeg'
+        };
+        
+        let person17 = {
+            name: 'automata',
+           
+            profilepic: '19.jpeg'
+        };
+            
+        let person18 = {
+            name: 'networking',
+        
+            profilepic: '19.jpeg'
+        };
+            
+        list.push(person1);
+        list.push(person2);
+        list.push(person3);
+		list.push(person4);
+		list.push(person5);
+		list.push(person6);
+		list.push(person7);
+		list.push(person8);
+		list.push(person9);
+		list.push(person10);
+			list.push(person11);
+        list.push(person12);
+        list.push(person13);
+		list.push(person14);
+		list.push(person15);
+		list.push(person16);
+		list.push(person17);
+		list.push(person18);
+	
+        
+        numberOfPages = getNumberOfPages();
+	
+}
+    
+function getNumberOfPages() {
+    return Math.ceil(list.length / numberPerPage);
+}
+
+function nextPage() {
+    currentPage += 1;
+    loadList();
+}
+
+function previousPage() {
+    currentPage -= 1;
+    loadList();
+}
+
+
+function loadList() {
+    var begin = ((currentPage - 1) * numberPerPage);
+    var end = begin + numberPerPage;
+
+    pageList = list.slice(begin, end);
+    drawList();
+    check();
+}
+    
+function drawList() {
+ document.getElementById("list").innerHTML = "";
+  let l=0;   
+let k=9;
+    for (let r = 0; r <3; r++)
+    {  let row = document.createElement('div');
+        
+	 row.classList.add('row');
+	 if(k>3)
+	   m=3;
+	  else 
+        m=k	;  
+		for(let j=0;j<m;j++)
+		{
+		let obj = pageList[j+l];
+        let div = document.createElement('div');
+		div.classList.add('card','col-md-4');
+        let name = document.createElement('div');
+     
+        let profilepic = document.createElement('div'); 
+        name.innerHTML = obj.name;
+        name.className = 'name';
+        
+        
+        
+        profilepic.innerHTML = `<img src='${obj.profilepic}'/>`;
+        profilepic.className = 'profilepic';
+        
+        div.appendChild(name);
+       
+        div.appendChild(profilepic);
+		row.appendChild(div);
+		}
+         k-=3;
+		 l+=3;
+      document.getElementById("list").appendChild(row);  
+    }
+	}
+
+function check() {
+    document.getElementById("next").disabled = currentPage == numberOfPages ? true : false;
+    document.getElementById("previous").disabled = currentPage == 1 ? true : false;
+    
+}
+
+function load() {
+
+    makeList();
+    loadList();
+}
+
+window.onload = load;
+</script>
+</body>
+</html>
